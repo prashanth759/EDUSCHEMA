@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'eduschema',
         'USER': 'root',
-        'PASSWORD': 'Prashanth@3002',
+        'PASSWORD': 'enter your mysql password',
         'HOST': 'localhost',
         'PORT': '3306',
     }
