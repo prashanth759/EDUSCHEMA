@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h1>Courses</h1>
+    <a href="{% url 'course_add' %}" class="btn btn-primary">Add Course</a>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <td>{{ course.CourseID }}</td>
+                <td>{{ course.CourseName }}</td>
+                <td>{{ course.CourseDescription }}</td>
+                <td>{{ course.StartDate }}</td>
+                <td>{{ course.EndDate }}</td>
+                <td>
+                    <a href="{% url 'course_edit' course.CourseID %}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{% url 'course_delete' course.CourseID %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <a href="{% url 'index' %}" class="btn btn-secondary mt-3">Back</a>
+</div>
+{% endblock %}

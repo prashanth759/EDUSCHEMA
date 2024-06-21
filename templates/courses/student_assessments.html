@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ student.FirstName }} {{ student.LastName }}</h1>
+    <p>Email: {{ student.Email }}</p>
+    <p>Date of Birth: {{ student.DateOfBirth }}</p>
+
+    <h2>Enrollments</h2>
+    <ul>
+        {% for enrollment in enrollments %}
+            <li>{{ enrollment.Course.CourseName }} (Enrolled on {{ enrollment.EnrollmentDate }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Assessments</h2>
+    <ul>
+        {% for assessment in assessments %}
+            <li>{{ assessment.AssessmentName }} (Max Score: {{ assessment.MaxScore }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Grades</h2>
+    <ul>
+        {% for grade in grades %}
+            <li>{{ grade.Assessment.AssessmentName }}: {{ grade.Score }} </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Course Instructors</h2>
+    <ul>
+        {% for course_instructor in course_instructors %}
+            <li>{{ course_instructor.Course.CourseName }} - {{ course_instructor.Instructor.FirstName }} {{ course_instructor.Instructor.LastName }} (Assigned on {{ course_instructor.AssignmentDate }})</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'enter_student_id' %}" class="btn btn-secondary mt-3">Back </a>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h1>Enter Student ID</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Show Details</button>
+    </form>
+    <a href="{% url 'index' %}" class="btn btn-secondary mt-2">Back</a>
+</div>
+{% endblock %}

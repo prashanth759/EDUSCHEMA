@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4" style="background-color: #f0f0f0; padding: 10px;">Deleted Items</h1>
+    
+    <h2>Courses</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Course ID</th>
+                <th>Course Name</th>
+                <th>Course Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Deletion Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in deleted_courses %}
+            <tr>
+                <td>{{ course.CourseID }}</td>
+                <td>{{ course.CourseName }}</td>
+                <td>{{ course.CourseDescription }}</td>
+                <td>{{ course.StartDate }}</td>
+                <td>{{ course.EndDate }}</td>
+                <td>{{ course.deleted_date }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No courses deleted.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Instructors</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Instructor ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Bio</th>
+                <th>Deletion Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for instructor in deleted_instructors %}
+            <tr>
+                <td>{{ instructor.InstructorID }}</td>
+                <td>{{ instructor.FirstName }}</td>
+                <td>{{ instructor.LastName }}</td>
+                <td>{{ instructor.Email }}</td>
+                <td>{{ instructor.Bio }}</td>
+                <td>{{ instructor.deleted_date }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No instructors deleted.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Students</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Date of Birth</th>
+                <th>Deletion Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in deleted_students %}
+            <tr>
+                <td>{{ student.StudentID }}</td>
+                <td>{{ student.FirstName }}</td>
+                <td>{{ student.LastName }}</td>
+                <td>{{ student.Email }}</td>
+                <td>{{ student.DateOfBirth }}</td>
+                <td>{{ student.deleted_date }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No students deleted.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Assessments</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Assessment ID</th>
+                <th>Assessment Name</th>
+                <th>Max Score</th>
+                <th>Course</th>
+                <th>Deletion Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for assessment in deleted_assessments %}
+            <tr>
+                <td>{{ assessment.AssessmentID }}</td>
+                <td>{{ assessment.AssessmentName }}</td>
+                <td>{{ assessment.MaxScore }}</td>
+                <td>{{ assessment.Course.CourseName }}</td>
+                <td>{{ assessment.deleted_date }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No assessments deleted.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Grades</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Grade ID</th>
+                <th>Student</th>
+                <th>Assessment</th>
+                <th>Score</th>
+                <th>Deletion Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for grade in deleted_grades %}
+            <tr>
+                <td>{{ grade.GradeID }}</td>
+                <td>{{ grade.Student.FirstName }} {{ grade.Student.LastName }}</td>
+                <td>{{ grade.Assessment.AssessmentName }}</td>
+                <td>{{ grade.Score }}</td>
+                <td>{{ grade.deleted_date }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No grades deleted.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   
+    <h2>Enrollments</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Enrollment ID</th>
+                <th>Student</th>
+                <th>Course</th>
+                <th>Enrollment Date</th>
+                <th>Deletion Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for enrollment in deleted_enrollments %}
+            <tr>
+                <td>{{ enrollment.EnrollmentID }}</td>
+                <td>{{ enrollment.Student.FirstName }} {{ enrollment.Student.LastName }}</td>
+                <td>{{ enrollment.Course.CourseName }}</td>
+                <td>{{ enrollment.EnrollmentDate }}</td>
+                <td>{{ enrollment.deleted_date }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No enrollments deleted.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Course Instructors</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Course Instructor ID</th>
+                <th>Course</th>
+                <th>Instructor</th>
+                <th>Assignment Date</th>
+                <th>Deletion Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course_instructor in deleted_course_instructors %}
+            <tr>
+                <td>{{ course_instructor.CourseInstructorID }}</td>
+                <td>{{ course_instructor.Course.CourseName }}</td>
+                <td>{{ course_instructor.Instructor.FirstName }} {{ course_instructor.Instructor.LastName }}</td>
+                <td>{{ course_instructor.AssignmentDate }}</td>
+                <td>{{ course_instructor.deleted_date }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No course instructors deleted.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <a href="{% url 'index' %}" class="btn btn-primary mt-3">Back</a>
+</div>
+{% endblock %}
